@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        int[] test = new int[10];
-        String option; 
+        PersonDatabase database = new PersonDatabase();
 
+        String option; 
+        
         while(true) {
             showOptions();
 
