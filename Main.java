@@ -1,9 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import Packages.Database.DatabaseSystem;
+import Packages.Person.Person;
 
 public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        PersonDatabase database = new PersonDatabase();
+        ArrayList<Person> database = new ArrayList<Person>();
+        DatabaseSystem SysDB = new DatabaseSystem(database);
 
         String option; 
         
@@ -15,16 +19,19 @@ public class Main {
 
             switch(option) {
                 case "1":
-                    System.out.println("1");
+                    SysDB.showAllRecords();
                     break;
                 case "2":
-                    System.out.println("2");
+                    SysDB.createRecord();
                     break;
                 case "3":
                     System.out.println("3");
                     break;
                 case "4":
                     System.out.println("4");
+                    System.out.println("Digite o id do usuario que voce quer deletar: ");
+                    int personId = s.nextInt();
+                    SysDB.deleteRecord(personId);
                     break;
                 case "5":
                     System.out.println("Exit");
