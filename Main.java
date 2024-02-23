@@ -1,37 +1,51 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import Packages.Database.DatabaseSystem;
-import Packages.Person.Person;
+
+import com.example.Vehicle.Vehicle;
+import com.example.VehicleSystem.VehicleSystem;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        ArrayList<Person> database = new ArrayList<Person>();
-        DatabaseSystem SysDB = new DatabaseSystem(database);
+        ArrayList<Vehicle> database = new ArrayList<>();
+        VehicleSystem SysDB = new VehicleSystem(database);
 
-        String option; 
-        
+        String option;
+
         while(true) {
-            showOptions();
-
+            Scanner s = new Scanner(System.in);
+            SysDB.showOptions();
             System.out.print("> ");
             option = s.nextLine();
 
             switch(option) {
                 case "1":
-                    SysDB.showAllRecords();
+                    SysDB.readAllRecords();
                     break;
                 case "2":
                     SysDB.createRecord();
                     break;
                 case "3":
-                    System.out.println("3");
+                    SysDB.showEditOptions();
+                    System.out.print("> ");
+                    option = s.nextLine();
+
+                    switch (option) {
+                        case "1":
+                            SysDB.editBrandRecord();
+                            break;
+                        case "2":
+                            SysDB.editModelRecord();
+                            break;
+                        case "3":
+                            SysDB.editPlateRecord();
+                            break; 
+                        default:
+                            System.out.println("Not an option!");
+                            break;
+                    }
                     break;
                 case "4":
-                    System.out.println("4");
-                    System.out.println("Digite o id do usuario que voce quer deletar: ");
-                    int personId = s.nextInt();
-                    SysDB.deleteRecord(personId);
+                    SysDB.deleteRecord();
                     break;
                 case "5":
                     System.out.println("Exit");
@@ -42,14 +56,5 @@ public class Main {
                     break;
             }
         }
-    }
-
-    public static void showOptions() {
-        System.out.println("---------- OPTIONS ----------");
-        System.out.println("1 - List All Users");
-        System.out.println("2 - Create User");
-        System.out.println("3 - Edit User");
-        System.out.println("4 - Delete User");
-        System.out.println("5 - Exit Program");
     }
 }
